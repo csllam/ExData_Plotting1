@@ -5,9 +5,10 @@ DAT$Global_active_power <- as.numeric(as.character(DAT$Global_active_power))
 DAT$Sub_metering_1 <- as.numeric(as.character(DAT$Sub_metering_1))
 DAT$Sub_metering_2 <- as.numeric(as.character(DAT$Sub_metering_2))
 DAT$Sub_metering_3 <- as.numeric(as.character(DAT$Sub_metering_3))
+DAT$datetime = as.POSIXct(paste(DAT$Date, DAT$Time), format="%d/%m/%Y %H:%M:%S")
 
 
-png("plot3.png", width = 480, height = 480, units="px")
+png("plot3.png", width = 480, height = 480, units="px", bg = "transparent")
 plot(x=DAT$datetime, y=DAT$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
 lines(x = DAT$datetime, y=DAT$Sub_metering_2, col="red")
 lines(x = DAT$datetime, y=DAT$Sub_metering_3, col="blue")

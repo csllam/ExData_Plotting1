@@ -6,7 +6,7 @@ DAT$Date<- as.character(DAT$Date)
 DAT$Time<- as.character(DAT$Time)
 DAT$datetime = as.POSIXct(paste(DAT$Date, DAT$Time), format="%d/%m/%Y %H:%M:%S")
 
-png("plot2.png", width = 480, height = 480, units="px")
+png("plot2.png", width = 480, height = 480, units="px", bg = "transparent")
 plot(x = DAT$datetime, y= DAT$Global_active_power, type="l", xlab = "", ylab="Global Active Power (kilowatts)")
 dev.off()
 
