@@ -1,0 +1,21 @@
+
+##plot4.R
+Dat<-read.csv("exdata_data_household_power_consumption/household_power_consumption.txt", sep = ";")
+DAT<- subset(Dat, subset = Dat$Date == "1/2/2007" | Dat$Date == "2/2/2007")
+DAT$Global_active_power <- as.numeric(as.character(DAT$Global_active_power))
+DAT$Sub_metering_1 <- as.numeric(as.character(DAT$Sub_metering_1))
+DAT$Sub_metering_2 <- as.numeric(as.character(DAT$Sub_metering_2))
+DAT$Sub_metering_3 <- as.numeric(as.character(DAT$Sub_metering_3))
+DAT$Voltage<- as.numeric(as.character(DAT$Voltage))
+DAT$Global_reactive_power <- as.numeric(as.character(DAT$Global_active_power))
+
+png("plot4.png", width = 480, height = 480, units="px")
+par(mfrow=c(2,2))
+plot(x = DAT$datetime, y= DAT$Global_active_power, type="l", xlab = "", ylab="Global Active Power (kilowatts)")
+plot(x= DAT$datetime, y=DAT$Voltage, type="l", xlab="datetime", ylab="Voltage")
+plot(x=DAT$datetime, y=DAT$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
+lines(x = DAT$datetime, y=DAT$Sub_metering_2, col="red")
+lines(x = DAT$datetime, y=DAT$Sub_metering_3, col="blue")
+legend("topright", lty=c(1,1,1), col=c("black", "blue", "red"), legend=c("sub_metering_1", "sub_metering_2", "sub_metering_3"), bty = "n")
+plot(y=DAT$Global_reactive_power, x=DAT$datetime, type="l", xlab="datetime", ylab="Global_reactive_power")
+dev.off()
